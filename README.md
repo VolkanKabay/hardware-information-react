@@ -55,6 +55,8 @@ To run the app locally, follow these steps:
     node server.js
     # or if using yarn:
     yarn start
+    cd ./backend
+    node server.js
     ```
 
 4. Open the app in your browser:
