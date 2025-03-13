@@ -35,7 +35,7 @@ To run the app locally, follow these steps:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/hardware-information-react.git
+    git clone https://github.com/VolkanKabay/hardware-information-react.git
     cd hardware-information-react
     ```
 
