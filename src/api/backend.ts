@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const backend = axios.create({
-  baseURL: "https://hardware-information-react.vercel.app/api",
+  baseURL: "http://localhost:5000",
 });
 
 export const get = async (url: string) => {
