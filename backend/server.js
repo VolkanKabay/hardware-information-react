@@ -5,14 +5,12 @@ const cors = require("cors");
 const app = express();
 const port = 5000;
 
-app.use(cors()); // CORS aktivieren
+app.use(cors());
 
-// Standard-Route für '/'
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to your System-Monitor!</h1>");
 });
 
-// Route für '/systeminfo' (deine ursprüngliche Route)
 app.get("/systeminfo", async (req, res) => {
   try {
     const cpu = await si.cpu();
