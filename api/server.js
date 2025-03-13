@@ -1,6 +1,6 @@
-import express from "express";
-import si from "systeminformation";
-import cors from "cors";
+const express = require("express");
+const si = require("systeminformation");
+const cors = require("cors");
 
 const app = express();
 
@@ -45,5 +45,5 @@ app.get("/systeminfo", async (req, res) => {
   }
 });
 
-// Export the app for serverless
-export default app;
+// Export the app to be used in Vercel serverless functions
+module.exports = app;
