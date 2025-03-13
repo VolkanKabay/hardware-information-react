@@ -22,6 +22,7 @@ app.get("/systeminfo", async (req, res) => {
     const processes = await si.processes();
     const services = await si.services();
     const users = await si.users();
+    const all = await si.getAllData();
 
     res.json({
       cpu: `${cpu.manufacturer} ${cpu.brand} @ ${cpu.speed}GHz`,
@@ -38,6 +39,7 @@ app.get("/systeminfo", async (req, res) => {
       processes: `${processes.all}`,
       services: `${services.length}`,
       users: `${users.length}`,
+      all: all,
     });
   } catch (error) {
     res.status(500).json({ error: "Systeminformationen failed to load" });

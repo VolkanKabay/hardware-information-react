@@ -35,6 +35,7 @@ import {
   Info,
   Search,
   Launch,
+  Hardware,
 } from "@mui/icons-material";
 
 const Home = () => {
@@ -50,14 +51,11 @@ const Home = () => {
     dispatch(fetchSystemInfo());
   }, [dispatch]);
 
-  // Generate search links for hardware components
   const getSearchUrl = (type: string, value: string) => {
-    // Extract the most relevant search term
     let searchTerm = "";
 
     switch (type) {
       case "cpu": {
-        // Extract CPU model (e.g., "Intel Core i7-10700K")
         const cpuMatch = RegExp(
           /(intel|amd)\s+(core\s+i[3579]-\d+|ryzen\s+\d+)\S*/i
         ).exec(value);
@@ -67,7 +65,6 @@ const Home = () => {
         break;
       }
       case "gpu": {
-        // Extract GPU model (e.g., "NVIDIA GeForce RTX 3080")
         const gpuMatch = RegExp(
           /(nvidia|amd|intel)\s+(geforce|radeon|iris|hd)\s+\S+/i
         ).exec(value);
@@ -77,11 +74,9 @@ const Home = () => {
         break;
       }
       case "os":
-        // Extract OS name and version (e.g., "Windows 10 Pro" or "Ubuntu 20.04")
         searchTerm = value.split(" ").slice(0, 3).join(" ");
         break;
       case "memory": {
-        // Extract memory info (e.g., "16GB DDR4")
         const memMatch = RegExp(/(\d+GB|\d+\s+GB)\s+(DDR\d+)?/i).exec(value);
         searchTerm = memMatch ? memMatch[0] + " RAM" : value;
         break;
@@ -90,17 +85,14 @@ const Home = () => {
         searchTerm = value.split(" ").slice(0, 3).join(" ");
     }
 
-    // Encode the search term for use in URL
     const encodedSearch = encodeURIComponent(searchTerm.trim());
 
-    // Return search URLs for different engines
     return {
       google: `https://www.google.com/search?q=${encodedSearch}`,
       amazon: `https://www.amazon.com/s?k=${encodedSearch}`,
     };
   };
 
-  // Function to extract key specs as chips
   const extractCpuChips = (cpuString: string) => {
     const chips = [];
     if (cpuString.includes("Intel")) chips.push("Intel");
@@ -110,7 +102,6 @@ const Home = () => {
     if (cpuString.includes("Core i9")) chips.push("Core i9");
     if (cpuString.includes("Ryzen")) chips.push("Ryzen");
 
-    // Add clock speed if found
     const ghzMatch = RegExp(/(\d+\.\d+)GHz/).exec(cpuString);
     if (ghzMatch) chips.push(`${ghzMatch[1]} GHz`);
 
@@ -291,12 +282,46 @@ const Home = () => {
               }
             />
           </Grid>
-
+          <Grid item xs={12} md={6}>
+            <InfoCard
+              title="Bios"
+              icon={<Computer color="primary" />}
+              content={
+                <Typography>
+                  {systemInformation.all.bios.version} <br />
+                  {systemInformation.all.bios.releaseDate}
+                </Typography>
+              }
+              type="bios"
+              value={systemInformation.all.bios.version}
+              chips={["Version: " + systemInformation.all.bios.version]}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <InfoCard
+              title="Mainboard"
+              icon={<Hardware color="primary" />}
+              content={
+                <Typography>
+                  {systemInformation.all.baseboard.model} <br />
+                </Typography>
+              }
+              type="bios"
+              value={systemInformation.all.baseboard.model}
+              chips={[systemInformation.all.baseboard.manufacturer]}
+            />
+          </Grid>
           <Grid item xs={12} md={6}>
             <InfoCard
               title="Graphics"
               icon={<Videocam color="primary" />}
-              content={<Typography>{systemInformation.graphics}</Typography>}
+              content={
+                <Typography>
+                  {systemInformation.all.graphics.controllers
+                    .map((controller: { model: string }) => controller.model)
+                    .join(", ")}
+                </Typography>
+              }
               type="gpu"
               value={systemInformation.graphics}
               chips={extractGraphicsChips(systemInformation.graphics)}

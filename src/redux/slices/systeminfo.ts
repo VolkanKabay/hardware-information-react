@@ -12,6 +12,36 @@ interface SystemInfo {
   processes: string;
   services: string;
   users: string;
+  all: {
+    cpu: string;
+    memory: string;
+    os: string;
+    diskLayout: string[];
+    battery: string;
+    graphics: {
+      controllers: [];
+      displays: [];
+    };
+    baseboard: {
+      manufacturer: string;
+      model: string;
+      version: string;
+      serial: string;
+      memSlots: number;
+      memMax: number;
+      assetTag: string;
+    };
+    bios: {
+      vendor: string;
+      version: string;
+      releaseDate: string;
+      revision: string;
+      serial: string;
+    };
+    processes: string;
+    services: string;
+    users: string;
+  };
 }
 
 interface SystemInfoState {
