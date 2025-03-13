@@ -2,6 +2,8 @@
 
 A React-based web application that provides detailed system information about your hardware and software components, including CPU, memory, storage, operating system, graphics, battery, processes, and more. The app displays real-time data, allows searching for more information, and links to related resources on Google and Amazon.
 
+![image](https://github.com/user-attachments/assets/295eb11c-1a1f-4344-9ab6-f94b48063658)
+
 ## Features
 
 - View system information like CPU, memory, OS, battery, GPU, and more.
