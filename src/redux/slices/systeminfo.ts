@@ -24,7 +24,6 @@ export const fetchSystemInfo = createAsyncThunk(
   "systemInfo/fetchSystemInfo",
   async () => {
     const response = await get("/systeminfo");
-    console.log("API Response:", response);
     return response;
   }
 );
