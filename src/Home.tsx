@@ -400,7 +400,9 @@ const Home = () => {
             <Info color="action" sx={{ mr: 1 }} />
             <Typography variant="body2" color="text.secondary">
               This could be due to insufficient permissions or an issue with the
-              system information service.
+              system information service OR you are not running the local
+              backend using the commands: <br /> cd ./backend <br /> node
+              server.js
             </Typography>
           </Box>
         </Paper>

@@ -9,7 +9,7 @@ app.use(cors()); // CORS aktivieren
 
 // Standard-Route für '/'
 app.get("/", (req, res) => {
-  res.send("<h1>Willkommen beim Systemmonitor!</h1>");
+  res.send("<h1>Welcome to your System-Monitor!</h1>");
 });
 
 // Route für '/systeminfo' (deine ursprüngliche Route)
@@ -42,12 +42,10 @@ app.get("/systeminfo", async (req, res) => {
       users: `${users.length}`,
     });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Systeminformationen konnten nicht geladen werden." });
+    res.status(500).json({ error: "Systeminformationen failed to load" });
   }
 });
 
 app.listen(port, () =>
-  console.log(`🚀 Backend läuft auf http://localhost:${port}`)
+  console.log(`🚀 Backend running at http://localhost:${port}`)
 );
