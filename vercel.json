@@ -12,8 +12,14 @@
   ],
   "routes": [
     {
-      "src": "./backend/(.*)",
-      "dest": "./backend/$1"
+      "src": "/backend/(.*)",
+      "dest": "/backend/$1"
     }
-  ]
+  ],
+  "functions": {
+    "backend/server.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
 }
