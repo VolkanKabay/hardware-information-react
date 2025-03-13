@@ -13,6 +13,7 @@ interface SystemInfo {
   services: string;
   users: string;
   all: {
+    // there are more fields here, but we only need a few. Feel free to add more if you need them, just check the API response
     cpu: string;
     memory: string;
     os: string;
